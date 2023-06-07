@@ -29,7 +29,7 @@ def get_python_version_keys() -> list[str]:
     info = PythonInfo.from_exe(exe=python_exe)
     major_version = str(info.version_info[0])
     major_minor_version = ".".join([str(i) for i in info.version_info[:2]])
-    if "PyPy" == info.implementation:
+    if info.implementation == "PyPy":
         return [f"pypy-{major_minor_version}", f"pypy-{major_version}", f"pypy{major_version}"]
     elif hasattr(sys, "pyston_version_info"):  # Pyston
         return [f"piston-{major_minor_version}", f"pyston-{major_version}"]
